@@ -1,0 +1,65 @@
+{
+  "global": {
+    "prefix": "!",
+    "allowSelfTrigger": false,
+    "modules": {
+      "welcome": {
+        "enabled": true,
+        "message": "✨🎮 ¡Holiii y bienvenid@ al squad, @{userId}! 🎮✨\\n\\nAquí aceptamos tryhards, casuals y hasta al primo que nomás viene a ver memes.\\n🔥 Jugamos Repo, Rivals y cualquier cosa que nos quite horas de sueño.\\n👉 A ver, cuenta… ¿en qué juego eres crees pro?",
+        "sendSticker": false
+      }
+    }
+  },
+  "groups": {
+    "default": {
+      "welcomeMessage": "✨🎮 ¡Holiii y bienvenid@ al squad!, @{userId}! ",
+      "enableSummarizer": false,
+      "modules": {
+        "welcome": {
+          "enabled": true
+        },
+        "fortune": true,
+        "happiness": true,
+        "pet": true,
+        "leaderboard": true,
+        "summarizer": {
+          "enabled": true,
+          "system_prompt": null
+        }
+      }
+    },
+    "120363419122374567@g.us": {
+      "welcomeMessage": "¡Holiii, @{userId}!",
+      "modules": {
+        "welcome": { "enabled": true, "message": "¡Holiii, @{userId}!" },
+        "summarizer": { "enabled": true, "system_prompt": "Solo contesta una luna sin nada mas de contexto te paso un texto de relleno cuando lo leas pon una luna ." },
+        "fortune": true,
+        "happiness": true
+      }
+    },
+    "120363418745797443@g.us": {
+      "welcomeMessage": "¡Woooof! 🐾 Bienvenid@, @{userId}! Antes de lanzarte al multiverso de chismes, y memes, preséntate en este lobby Online:\n\n➖ Sexo/Género (aceptamos aliens 🛸):\n➖ País o ciudad (la base de operaciones 🗺️):\n➖ Ocupación (o cómo finges ganarte la vida 🧑‍💻):\n➖ Comida favorita (sin juzgar… mucho 🍕):\n➖ Hobby (además de stalkear perfiles 🤓):\n➖ Videojuegos (Steam? Switch? CandyCrush? ):\n➖ Redes sociales (tu vitrina para el algoritmo):\n➖ Fetiche ( _Escuchamos no juzgamos_ ):\n➖ Foto sensual o tributo (opcional, pero muy apreciado 🔥📸)",
+      "modules": { "welcome": { "enabled": true, "message": "¡Woooof! 🐾 Bienvenid@, @{userId}! Antes de lanzarte al multiverso de chismes, y memes, preséntate en este lobby Online:\n\n➖ Sexo/Género (aceptamos aliens 🛸):\n➖ País o ciudad (la base de operaciones 🗺️):\n➖ Ocupación (o cómo finges ganarte la vida 🧑‍💻):\n➖ Comida favorita (sin juzgar… mucho 🍕):\n➖ Hobby (además de stalkear perfiles 🤓):\n➖ Videojuegos (Steam? Switch? CandyCrush? ):\n➖ Redes sociales (tu vitrina para el algoritmo):\n➖ Fetiche ( _Escuchamos no juzgamos_ ):\n➖ Foto sensual o tributo (opcional, pero muy apreciado 🔥📸)" } }
+    },
+    "120363419787948735@g.us": {
+      "welcomeMessage": "🎶 Ey @{userId}! \n➖ Género musical que juras por tu alma:\n➖ Artista que defiendes con puños:\n➖ Disco que te tatuarías:\n➖ ¿Tocas algo o solo egos?:\n➖ ¿Y ahorita mismo qué suena en tus audífonos? (Sé honesto, no finjas Radiohead si es RBD 🎧)",
+      "modules": { "welcome": { "enabled": true, "message": "🎶 Ey @{userId}! \n➖ Género musical que juras por tu alma:\n➖ Artista que defiendes con puños:\n➖ Disco que te tatuarías:\n➖ ¿Tocas algo o solo egos?:\n➖ ¿Y ahorita mismo qué suena en tus audífonos? (Sé honest@, no finjas Radiohead si es RBD 🎧)" } }
+    },
+    "120363419102988273@g.us": {
+      "welcomeMessage": "🕹️ ¡Nuevo challenger detectado, @{userId}! Configura tu ficha de jugador:\n➖ Main consola, PCerdo o mobile (donde haces magia 🎮):\n➖ Género favorito (FPS, RPG, waifus… lo que sea 🧠):\n➖ Juego que te define como persona:\n➖ Ragequit más vergonzoso (si te atreves 😅):\n➖ ¿Y ahora mismo, qué estás jugando? (no mientas, lo stalkeamos igual 👀):\nNosotros jugamos Rivals, Minecraft y Monopoly",
+      "modules": { "welcome": { "enabled": true, "message": "🕹️ ¡Nuevo challenger detectado, @{userId}! Configura tu ficha de jugador:\n➖ Main consola, PCerdo o mobile (donde haces magia 🎮):\n➖ Género favorito (FPS, RPG, waifus… lo que sea 🧠):\n➖ Juego que te define como persona:\n➖ Ragequit más vergonzoso (si te atreves 😅):\n➖ ¿Y ahora mismo, qué estás jugando? (no mientas, lo stalkeamos igual 👀):\nNosotros jugamos Rivals, Minecraft y Monopoly" } }
+    },
+    "120363399561865872@g.us": {
+      "welcomeMessage": "🌤️ ¡Buen día, @{userId}! Has entrado a Trauma.\nAquí compartimos chismes, pero también calorcito emocional.\nCada mañana, una dosis de cariño, caos y café.\n\n☕ Hoy el mood es: “ *Cree en ti, incluso cuando nadie más lo haga. Tu valor no depende de la opinión de los demás.*. ”\n\n¿Qué mantra, meme o pensamiento te levanta el ánimo hoy?\n\nDéjalo aquí abajo y que ruede la buena vibra. 💌",
+      "modules": { "welcome": { "enabled": true, "message": "🌤️ ¡Buen día, @{userId}! Has entrado a Trauma.\nAquí compartimos chismes, pero también calorcito emocional.\nCada mañana, una dosis de cariño, caos y café.\n\n☕ Hoy el mood es: “ *Cree en ti, incluso cuando nadie más lo haga. Tu valor no depende de la opinión de los demás.*. ”\n\n¿Qué mantra, meme o pensamiento te levanta el ánimo hoy?\n\nDéjalo aquí abajo y que ruede la buena vibra. 💌" } }
+    },
+    "120363418619270979@g.us": {
+      "welcomeMessage": "# 🐧 Linux.Zone Multidisciplinario\n\n> `./Linux.Multidisciplinario/Linux.Zone/init.sh`\n\n## 🚀 Instalación Exitosa: Módulo Shiba.AI v1.1.3\n\nBienvenid@, @{userId}.  \nHas sido correctamente integrado al entorno **Linux.Zone**, una zona segura y altamente especializada para mentes multitarea, obsesionadas con la terminal, los scripts, y la ingeniería del caos ordenado.\n\n### ⚙️ ¿Qué encontrarás aquí?\n\n- Discusiones sobre distros (sin flamewars... a veces)\n- Automatización y scripting avanzado\n- Hacking ético y fortificación de sistemas\n- Cultura libre, servidores caseros y neocibercultura\n- Existencialismo digital (opcional)",
+      "modules": { "welcome": { "enabled": true, "message": "# 🐧 Linux.Zone Multidisciplinario\n\n> `./Linux.Multidisciplinario/Linux.Zone/init.sh`\n\n## 🚀 Instalación Exitosa: Módulo Shiba.AI v1.1.3\n\nBienvenid@, @{userId}.  \nHas sido correctamente integrado al entorno **Linux.Zone**, una zona segura y altamente especializada para mentes multitarea, obsesionadas con la terminal, los scripts, y la ingeniería del caos ordenado.\n\n### ⚙️ ¿Qué encontrarás aquí?\n\n- Discusiones sobre distros (sin flamewars... a veces)\n- Automatización y scripting avanzado\n- Hacking ético y fortificación de sistemas\n- Cultura libre, servidores caseros y neocibercultura\n- Existencialismo digital (opcional)" } }
+    },
+    "120363419122374505@g.us": {
+      "welcomeMessage": "¡Holiii, @{userId}!",
+      "modules": { "welcome": { "enabled": true, "message": "¡Holiii, @{userId}!" } }
+    }
+  }
+}

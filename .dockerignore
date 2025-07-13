@@ -1,0 +1,25 @@
+# Ignore node modules and logs
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+
+# Ignore source files not needed in production
+**/__tests__
+**/*.md
+docs
+src/db/migrations
+src/data
+.scripts
+*.env
+*.env.*
+*.json
+.ide*
+.vscode
+.git
+.gitignore
+.prettierrc.json
+eslint.config.mjs
+jest.config.js
+nodemon.json
+package-lock.json

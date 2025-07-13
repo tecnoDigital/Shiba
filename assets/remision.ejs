@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Factura</title>
+  <style>
+    /* ================= Reset y tipografía ================= */
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #000000;       /* Fondo negro */
+      color: #FFFFFF;                  /* Texto blanco por defecto */
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    /* ================= Contenedor principal ================= */
+    .invoice-container {
+      width: 100%;
+      max-width: 550px; /* Increased max-width by 10% */
+      margin: 0 auto;
+      border: 1px solid #333333;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+      background-color: #000000;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* ================= Encabezado (Nueva estructura) ================= */
+    .header-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #333333;
+    }
+
+    .header-left h1 {
+      color: #FFD700; /* Yellow/Gold for emphasis */
+      font-size: 3.6em; /* Reduced by 10% */
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: normal;
+      letter-spacing: 2px;
+    }
+
+    .header-left .title-line {
+      border: none;
+      border-top: 2px solid #FFD700; /* Yellow/Gold line */
+      width: 100%;
+      margin: 10px 0 5px 0;
+    }
+
+    .header-left .invoice-number {
+      font-size: 1.8em; /* Reduced by 10% */
+      color: #FFFFFF;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .header-left .sub-line {
+      border: none;
+      border-top: 1px solid #666666; /* Gray line */
+      width: 80%;
+      margin: 3px 0 8px 0; /* Reduced margin */
+    }
+
+    .header-left .invoice-date {
+      font-size: 1.3em; /* Reduced by 10% */
+      color: #AAAAAA; /* Gray for subtle text */
+      margin: 0;
+    }
+
+    .header-right {
+      text-align: right;
+    }
+
+    .header-right .company-name {
+      font-family: 'Georgia', serif; /* Example font from image */
+      font-size: 2.0em; /* Increased font size */
+      color: #FFD700; /* Yellow/Gold */
+      margin: 0;
+    }
+
+    .header-right .company-slogan {
+      font-size: 1.0em; /* Increased font size */
+      color: #AAAAAA; /* Gray */
+      margin: 3px 0 0 0; /* Reduced margin */
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ================= Sección Cliente (Nueva estructura) ================= */
+    .client-section {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .client-label-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .client-line-left, .client-line-right {
+      border: none;
+      border-top: 1px solid #666666; /* Gray line */
+      flex-grow: 1;
+      margin: 0 10px;
+    }
+
+    .client-label {
+      background-color: #555555; /* Darker gray for the label background */
+      color: #FFD700; /* Yellow/Gold for label text */
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      white-space: nowrap;
+    }
+
+    .client-details p {
+      margin: 6px 0;
+      color: #FFFFFF;
+      font-size: 1.3em; /* Reduced by 10% */
+    }
+
+    /* ================= Tabla de productos ================= */
+    .invoice-items {
+      margin-bottom: 20px;
+    }
+
+    .invoice-items table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #444; /* Darker border */
+    }
+
+    .invoice-items th, .invoice-items td {
+      border: 1px solid #444; /* Darker border */
+      padding: 14px; /* Increased padding */
+      text-align: center; /* Centered text */
+      color: #f0f0f0; /* Ensure text is light */
+    }
+    .invoice-items th:nth-child(1), .invoice-items td:nth-child(1) { /* Description */
+      width: 50%;
+    }
+    .invoice-items th:nth-child(2), .invoice-items td:nth-child(2) { /* Quantity */
+      width: 25%;
+    }
+    .invoice-items th:nth-child(3), .invoice-items td:nth-child(3) { /* Price */
+      width: 25%;
+    }
+
+    .invoice-items th {
+      background-color: #3a3a3a; /* Darker background for headers */
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 1.2em; /* Reduced by 10% */
+      color: #FFD700; /* Yellow/Gold for table headers */
+    }
+
+    .invoice-items tr:nth-child(even) {
+      background-color: #1a1a1a; /* Slightly lighter for even rows */
+    }
+
+    .invoice-items tr:hover {
+      background-color: #2a2a2a; /* Darker on hover */
+    }
+
+    /* ================= Totales ================= */
+    .invoice-totals {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .invoice-totals table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .invoice-totals td {
+      padding: 8px 0;
+      text-align: right;
+      font-size: 1.3em; /* Reduced by 10% */
+      color: #FFFFFF;
+    }
+
+    .invoice-totals .total-row td {
+      font-weight: bold;
+      border-top: 2px solid #FFD700; /* Yellow/Gold line */
+      padding-top: 14px;
+      font-size: 1.2em; /* Reduced by 10% */
+      color: #FFD700;
+    }
+
+    /* ================= Pie de página ================= */
+    .invoice-footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #444; /* Darker border */
+      font-size: 0.8em;
+      color: #aaa; /* Gray for subtle text */
+    }
+
+    /* Styling for the new logo placeholder */
+    .company-logo-placeholder {
+      width: 150px; /* Adjust as needed */
+      height: auto;
+      margin-left: auto; /* Align to right */
+    }
+
+    .company-logo-svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ================= Responsive Adjustments ================= */
+    @media (max-width: 600px) {
+      body {
+        padding: 0;
+      }
+
+      .invoice-container {
+        padding: 8px;
+        gap: 10px;
+        max-width: 100%;
+        min-height: 98vh;
+      }
+
+      .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header-left h1 {
+        font-size: 2.7em; /* Reduced by 10% */
+      }
+
+      .header-left .invoice-number {
+        font-size: 1.6em; /* Reduced by 10% */
+      }
+
+      .header-left .invoice-date {
+        font-size: 1.1em; /* Reduced by 10% */
+      }
+
+      .header-right {
+        text-align: left;
+        margin-top: 8px;
+        width: 100%;
+      }
+
+      .company-logo-placeholder {
+        margin-left: 0;
+        width: 160px;
+      }
+
+      .header-right .company-name,
+      .header-right .company-slogan {
+        text-align: left;
+      }
+
+      .invoice-totals table {
+        width: 100%;
+      }
+
+      .invoice-items th,
+      .invoice-items td {
+        padding: 14px 5px;
+        font-size: 1.1em; /* Reduced by 10% */
+      }
+
+      .client-details p {
+        font-size: 1.1em; /* Reduced by 10% */
+      }
+
+      .invoice-totals .total-row td {
+        font-size: 1.2em; /* Reduced by 10% */
+      }
+    }
+
+    @media (max-width: 400px) {
+      .header-right {
+        width: 100%;
+      }
+      .header-right {
+        margin-top: 20px;
+      }
+      .invoice-items th, .invoice-items td {
+        font-size: 0.8em;
+      }
+      .invoice-totals table {
+        width: 100%;
+      }
+    }
+
+    /* Media queries from original HTML */
+    @media (max-width: 768px) {
+      .invoice-container {
+        padding: 20px;
+      }
+      .invoice-items th, .invoice-items td {
+        padding: 8px;
+        font-size: 0.85em;
+      }
+      .header-left h1 {
+        font-size: 2.2em;
+      }
+      .header-right .company-name {
+        font-size: 1.5em;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .invoice-container {
+        padding: 15px;
+      }
+      .header-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .header-left, .header-right {
+        width: 100%;
+      }
+      .header-right {
+        margin-top: 20px;
+      }
+      .invoice-items th, .invoice-items td {
+        font-size: 0.8em;
+      }
+      .invoice-totals table {
+        width: 100%;
+      }
+    }
+
+    /* Social media styles */
+    .social-media {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .social-media p {
+      margin-bottom: 10px;
+    }
+
+    .social-media a {
+      color: #FFFFFF;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .social-media a:hover {
+      color: #FFD700;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    <div class="header-section">
+      <div class="header-left">
+        <h1>FACTURA</h1>
+        <hr class="title-line" />
+        <p class="invoice-number">N° <%= invoice.number %></p>
+        <hr class="sub-line" />
+        <p class="invoice-date">FECHA: <%= invoice.date %></p>
+      </div>
+      <div class="header-right">
+        <!-- Placeholder for company logo SVG -->
+        <div class="logo-svg">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 6679 2499" 
+            preserveAspectRatio="xMidYMid meet"
+            width="250" 
+            height="180"
+          >
+            <defs>
+              <style>
+                @font-face {
+                  font-family: 'Deftone Stylus';
+                  src: url('FontID0.svg#DeftoneStylus') format('svg');
+                  font-weight: normal;
+                  font-style: normal;
+                }
+                .fil1 { fill: #FEFEFE; }
+                .fil2, .fil3 { fill: #D2D3D5; }
+                .fil0 { fill: #FFF212; }
+                .fnt0, .fnt1 { 
+                  font-weight: normal;
+                  font-family: 'Deftone Stylus'; 
+                }
+                .fnt0 { font-size: 845.29px; }
+                .fnt1 { font-size: 1336.39px; }</style>
+            </defs>
+            <g id="Capa_x0020_1">
+              <!-- V de la izquierda -->
+              <text x="3201.73" y="1450.51" class="fil0 fnt0">V</text>
+              <path class="fil1" d="M3415.04 669.06l0 -46.47c1.16,-0.07 2.37,-0.1 3.6,-0.1l9.32 0c25.19,0 38.24,-5.13 38.24,-15.39 0,-4.4 -1.86,-8.8 -4.66,-13.93l-46.5 -81.6 0 -284.04 204.11 358.31c8.4,13.93 11.19,26.39 11.19,37.38 0,40.31 -58.74,51.31 -154.8,51.31 -28.03,0 -47.38,-1.89 -60.5,-5.46zm0 -482.7l0 -46.89c59.4,17.58 125.17,50.82 194.79,98.94 174.39,120.2 251.79,274.86 328.25,433.92l-154.8 0c-66.21,-149.53 -128.7,-274.13 -223.82,-387.02 -34.5,-41.04 -71.8,-74.76 -111.91,-90.89 -13.92,-5.83 -24.15,-8.04 -32.52,-8.06z"/>
+              <!-- V invertida en espejo -->
+              <g transform="matrix(-1 -0 0 -1 6679.29 1834.09)">
+                <text x="3188.76" y="1831.55" class="fil0 fnt0">V</text>
+              </g>
+              <path class="fil1" d="M3277.22 801.77l0 46.47c-1.16,0.07 -2.37,0.1 -3.6,0.1l-9.32 0c-25.19,0 -38.24,5.13 -38.24,15.39 0,4.4 1.86,8.8 4.66,13.93l46.5 81.6 0 284.04 -204.11 -358.31c-8.4,-13.93 -11.19,-26.39 -11.19,-37.38 0,-40.31 58.74,-51.31 154.8,-51.31 28.03,0 47.38,1.89 60.5,5.46zm0 482.7l0 46.89c-59.4,-17.58 -125.17,-50.82 -194.79,-98.94 -174.39,-120.2 -251.79,-274.86 -328.25,-433.92l154.8 0c66.21,149.53 128.7,274.13 223.82,387.02 34.5,41.04 71.8,74.76 111.91,90.89 13.92,5.83 24.15,8.04 32.52,8.06z"/>
+              <g id="_2511803499696">
+                <g>
+                  <path class="fil2" d="M2708.08 2310.77c14.32,85.69 -33.42,108.29 -110.83,117.66 -160.32,19.4 -230.05,-71.15 -190.78,-131.89 28.37,-43.85 264.54,-1.4 301.61,14.24zm-181.41 -578.75c50.57,-15.9 115.98,-0.54 135.65,79.69 19.67,80.23 -54.2,161.97 -135.73,148.37 -118.2,-19.72 -116.59,-206.67 0.08,-228.06zm-241.97 79.33c-14.86,131.65 37.9,166.42 89.25,228.56l-27.7 28.06c-84.67,80.92 -45.98,164.18 26.49,190.06l-29.55 18.79c-59.36,37.7 -108.8,114.2 -63.93,183.46 44.61,68.82 130.03,62.07 220.27,90.54 192.33,14.67 403.06,-63.07 383.78,-264.72 -9.17,-95.83 -96.56,-126.11 -192.98,-134.32 -80.13,-6.82 -213.49,30.86 -236.9,-55.91 -5.58,-20.7 -11.31,-26.43 6.14,-25.29 280.67,18.46 364.48,-53.16 346.64,-318.91l80.44 -5.18 11.8 -118.07c-66.77,-18.8 -159.42,-0.61 -202.67,0.09 -2.28,0.04 -8.68,0.28 -27.71,-4.92 -165.25,-45.11 -360.83,-12.09 -383.36,187.75z"/>
+                  <path class="fil2" d="M1270.01 1984.38c-5.44,73.42 0.62,116.6 -49.56,157.26 -40.69,32.99 -95.06,42.26 -146.12,11.11 -24.92,-15.2 -116.21,-157.96 195.68,-168.38zm-361.6 -311.54l53.89 134.69c116.09,-63.13 333.93,-130.55 298.07,69.55 -111.78,18.32 -179.9,4.56 -277.66,52.6 -66.77,32.82 -117.58,107.13 -106.28,210.06 16.6,151.33 187.81,188.91 305.16,139.75 44.49,-18.64 63.31,-49.06 101.55,-62.96 20.64,71.41 -17.74,71.16 156.78,67.05 -5.46,-160.69 33.81,-495.51 -56.86,-592.89 -142.45,-152.99 -300.35,-81.35 -474.68,-17.85z"/>
+                  <path class="fil2" d="M1734.19 2283.47c7,-106.17 3.02,-220.91 4.07,-328.11 0.71,-70.91 -17.51,-190.6 125.15,-203.4 51.98,-4.66 95.1,21.25 111.07,57.82 24.36,55.85 -3.05,357.03 11.59,473.3l170.35 -0.45c13.7,-123.16 15.64,-490.34 -35.64,-577.31 -66.09,-112.1 -193.33,-138.6 -311.88,-65.51 -13.81,8.52 -32.86,18.29 -46.89,29.18l-44.76 31.89 -8.27 -76.93 -143.23 -1.43 -1.06 661.49 169.49 -0.53z"/>
+                  <path class="fil2" d="M3572.64 1667.94l0.47 -44.64 -172.05 -0.03c-5.21,110.23 -2.29,229.69 -3.05,340.59 -0.46,67.45 9.45,99.63 -28.81,137.08 -19.85,19.41 -62.41,52.43 -105.16,55.65 -118.59,8.91 -112.98,-112.51 -114.05,-209.33l-6.79 -323.92 -164.22 -0.26c-14.03,109.09 -13.75,492.44 28.85,573.76 30.84,58.88 103.67,107.63 198.58,104.11 110.46,-4.1 172.35,-82.06 203.08,-95.02l7.26 29.6c2.93,17.64 3.44,28.93 5.5,36.13 2.15,7.47 5.97,12.16 15.99,12.13l131.4 -0.41 3.01 -615.45z"/>
+                  <path class="fil2" d="M4353.29 1625.32l-0.3 657.86 169.93 1.31c3.37,-105.94 -10.65,-322.48 12.24,-407.49 42.04,-93.26 102.53,-101.92 206.64,-101.92l4.22 -151.51c-176.68,-12.58 -202.34,60.1 -237.49,95.62l-5.07 -93.8 -150.17 -0.06z"/>
+                  <polygon class="fil2" points="5525.27,2283.84 5690.19,2283.26 5699.44,1623.26 5529.61,1623.22 "/>
+                  <path class="fil2" d="M5579.27 1322.18c-141.1,56.12 -41.22,267.94 85.98,192.26 135.19,-80.44 19.3,-234.13 -85.98,-192.26z"/>
+                </g>
+                <g transform="matrix(1 0 0.162944 1 -3629.97 473.644)">
+                  <text x="3188.76" y="1831.55" class="fil0 fnt1">V</text>
+                </g>
+                <path class="fil2" d="M4058.22 1984.38c-5.44,73.42 0.62,116.6 -49.56,157.26 -40.69,32.99 -95.06,42.26 -146.12,11.11 -24.92,-15.2 -116.21,-157.96 195.68,-168.38zm-361.6 -311.54l53.89 134.69c116.09,-63.13 333.93,-130.55 298.07,69.55 -111.78,18.32 -179.9,4.56 -277.66,52.6 -66.77,32.82 -117.58,107.13 -106.28,210.06 16.6,151.33 187.81,188.91 305.16,139.75 44.49,-18.64 63.31,-49.06 101.55,-62.96 20.64,71.41 -17.74,71.16 156.78,67.05 -5.46,-160.69 33.81,-495.51 -56.86,-592.89 -142.45,-152.99 -300.35,-81.35 -474.68,-17.85z"/>
+                <path class="fil2" d="M6193.3 1984.38c-5.44,73.42 0.62,116.6 -49.56,157.26 -40.69,32.99 -95.06,42.26 -146.12,11.11 -24.92,-15.2 -116.21,-157.96 195.68,-168.38zm-361.6 -311.54l53.89 134.69c116.09,-63.13 333.93,-130.55 298.07,69.55 -111.78,18.32 -179.9,4.56 -277.66,52.6 -66.77,32.82 -117.58,107.13 -106.28,210.06 16.6,151.33 187.81,188.91 305.16,139.75 44.49,-18.64 63.31,-49.06 101.55,-62.96 20.64,71.41 -17.74,71.16 156.78,67.05 -5.46,-160.69 33.81,-495.51 -56.86,-592.89 -142.45,-152.99 -300.35,-81.35 -474.68,-17.85z"/>
+                <path class="fil3" d="M5207.82 1787.96c6.76,70.1 18.22,273.7 -20.83,313.63 -60.51,61.88 -176.82,85.48 -217.06,-16.3 -61.92,-156.6 -19.23,-435.16 237.88,-297.32zm-434.54 54.44c-15.99,81.35 -19.63,147.87 -3.11,231.77 7.43,37.74 18.76,64.13 33.24,93.35 37.37,75.4 111.53,123.95 195.71,131.72 109.23,10.06 145.61,-43.42 227.75,-91.65 6.8,7.06 3.68,1.57 10.98,15.42l21.99 59.94 123.44 0.79 -1.44 -965.16 -155 -2.65 -4.88 356.02c-235.29,-82.44 -339.39,-76.56 -448.68,170.45z"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="client-section">
+      <div class="client-label-wrapper">
+        <hr class="client-line-left" />
+        <span class="client-label">INFORMACIÓN</span>
+        <hr class="client-line-right" />
+      </div>
+      <div class="client-details-section">
+        <div class="client-details">
+          <div class="client-row">
+            <p><span class="client-label">Cliente:</span> <%= invoice.client.name %></p>
+            <p><span class="client-label">Teléfono:</span> <%= invoice.client.phone %></p>
+          </div>
+          <p><span class="client-label">Racha semanal:</span> <%= invoice.client.streak %> semanas</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="invoice-items">
+      <table>
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% items.forEach(function(item) { %>
+          <tr>
+            <td><%= item.description %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.unitPrice.toFixed(2) %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="invoice-totals">
+      <table>
+        <tr class="total-row">
+          <td>TOTAL (MXN):</td>
+          <td><span id="grandTotal"><%= invoice.total.toFixed(2) %></span></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Redes Sociales -->
+    <div class="social-media">
+      <p>Síguenos en redes:</p>
+      <a href="https://www.facebook.com/people/Vanguardia-DTF/61574143223784/" target="_blank">Facebook</a> |
+      <a href="https://www.facebook.com/people/Vanguardia-DTF/61574143223784/" target="_blank">Insta</a> |
+      <a href="https://www.facebook.com/people/Vanguardia-DTF/61574143223784/" target="_blank">WhatsApp</a>
+    </div>
+
+    <div class="invoice-footer">
+      <div class="footer-brand">
+        <span>Vanguardia DTF</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
