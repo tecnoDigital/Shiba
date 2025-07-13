@@ -67,6 +67,7 @@ async function start() {
   const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
+ feature/nombre-descriptivo
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--no-first-run', '--no-zygote', '--disable-gpu'],
     },
