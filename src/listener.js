@@ -27,6 +27,13 @@ export default class Listener {
         logger.info("[Listener] Inicializado con TriggerManager.");
     }
 
+    handleMessage(message) {
+        logger.info(`[Listener] Recibido mensaje de ${message.from}: ${message.body}`);
+        this._handleMessage(message).catch(err => {
+            logger.error({ err }, 'Error en _handleMessage');
+        });
+    }
+
     startListening() {
         this._client.on("message_create", this._handleMessage.bind(this));
         this._client.on("group_join", this._handleGroupJoin.bind(this));

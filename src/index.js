@@ -43,6 +43,7 @@ async function start() {
   // --- 1. Asegurar configuración --- 
   await promptForEnv('OPENAI_API_KEY');
   await promptForEnv('PERSISTENCE_TYPE');
+  await promptForEnv('LOG_LEVEL');
 
   // Recargar .env para asegurar que todas las variables estén en process.env
   dotenv.config({ override: true });
@@ -66,7 +67,8 @@ async function start() {
   const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-       headless: true,
+ feature/nombre-descriptivo
+      headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-accelerated-2d-canvas', '--no-first-run', '--no-zygote', '--disable-gpu'],
     },
     webVersionCache: {
