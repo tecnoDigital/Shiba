@@ -9,6 +9,10 @@ import PrivateMessageHandler from "./modules/private/PrivateMessageHandler.js";
 import HelpHandler from "./modules/help/HelpHandler.js"; // + Nueva importación para Help
 import ImproviserHandler from "./modules/improviser/improviserHandler.js";
 import welcomeModule, { handleCommand as welcomeHandleCommand, getEventName as welcomeGetEventName } from './modules/welcome/index.js';
+<<<<<<< HEAD
+=======
+import { handleIronPay } from "./modules/IronPay/handleIronPay.js";
+>>>>>>> 2405efc (ironpay 3)
 import whatsappWeb from 'whatsapp-web.js';
 const { MessageMedia } = whatsappWeb;
 
@@ -139,6 +143,12 @@ export default class TriggerManager {
     this.moduleInstances.set("help", helpHandler);
     this.registerCommand("!help", helpHandler.handleCommand.bind(helpHandler));
 
+<<<<<<< HEAD
+=======
+    // IronPay command
+    this.registerCommand("!llamar", (message, messageData, args) => handleIronPay(message, messageData, args, this.senderQueue));
+
+>>>>>>> 2405efc (ironpay 3)
     // 8️⃣ Welcome Module
     // No necesita una instancia de clase como tal, solo registrar su handler de comando
     this.registerCommand("!testwelcome", (message, messageData) => welcomeHandleCommand(message, this.senderQueue, messageData, this.client));
