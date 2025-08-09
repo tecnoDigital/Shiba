@@ -14,18 +14,12 @@ import OpenAI from 'openai';
  
 import http from 'http';
 import promClient from 'prom-client';
-<<<<<<< HEAD
 import fs from 'fs';
 import readline from 'readline';
-
-=======
 import axios from 'axios';
 import fs from 'fs';
 import readline from 'readline';
 
-
-
->>>>>>> 2405efc (ironpay 3)
 dotenv.config(); // Carga inicial de .env
 
 async function promptForEnv(keyName) {
@@ -53,23 +47,20 @@ async function start() {
   await promptForEnv('OPENAI_API_KEY');
   await promptForEnv('PERSISTENCE_TYPE');
   await promptForEnv('LOG_LEVEL');
-<<<<<<< HEAD
-=======
   await promptForEnv('IRON_PAY_WEBHOOK');
   await promptForEnv('IRON_NUMBERS');
->>>>>>> 2405efc (ironpay 3)
+
 
   // Recargar .env para asegurar que todas las variables estén en process.env
   dotenv.config({ override: true });
 
-<<<<<<< HEAD
-=======
+
   // Webhook RETell environment variable
   const IRON_PAY_WEBHOOK = process.env.IRON_PAY_WEBHOOK;
   const IRON_NUMBERS = (process.env.IRON_NUMBERS || '').split(',').map(s => s.trim().replace(/^\+/, ''));
   const WEBHOOK_RETELL = process.env.WEBHOOK_RETELL;
 
->>>>>>> 2405efc (ironpay 3)
+
   // --- 2. Inicialización de clientes y servicios ---
   const openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 

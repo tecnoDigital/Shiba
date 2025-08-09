@@ -63,7 +63,7 @@ class ImproviserHandler {
     logger.info(`[Improviser] Prompt to OpenAI: ${prompt.slice(0,50)}...`);
     try {
       const res = await this.openai.chat.completions.create({
-        model: 'gpt-4.1-nano',
+        model: 'gpt-5-nano',
         temperature: 0.75,
         messages: [
           {

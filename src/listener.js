@@ -24,11 +24,8 @@ export default class Listener {
             configManager,
             openai
         );
-<<<<<<< HEAD
-        logger.info("[Listener] Inicializado con TriggerManager.");
-=======
        // logger.info("[Listener] Inicializado con TriggerManager.");
->>>>>>> 2405efc (ironpay 3)
+
     }
 
     handleMessage(message) {
@@ -52,7 +49,6 @@ export default class Listener {
         }
 
         // const GRUPO_ESPECIFICO_ID = '120363419122374567@g.us'; // ID del grupo permitido
-<<<<<<< HEAD
         // const NUMERO_AUTORIZADO = '5213331843176@c.us'; // Número de teléfono autorizado para DMs
 
         // // Verificar si el mensaje es del grupo permitido
@@ -62,17 +58,17 @@ export default class Listener {
         // const esMensajeDirectoAutorizado = !message.from.endsWith('@g.us') &&
         //     (message.from === NUMERO_AUTORIZADO ||
         //         message.author === NUMERO_AUTORIZADO);
-=======
-        const NUMERO_AUTORIZADO = '5213331843176@c.us'; // Número de teléfono autorizado para DMs
+    //}
+      //  const NUMERO_AUTORIZADO = '5213331843176@c.us'; // Número de teléfono autorizado para DMs
 
         // // Verificar si el mensaje es del grupo permitido
         //const esDelGrupoPermitido = message.chatId === GRUPO_ESPECIFICO_ID;
 
         // // Verificar si es un mensaje directo del número autorizado
-        const esMensajeDirectoAutorizado = !message.from.endsWith('@g.us') &&
-            (message.from === NUMERO_AUTORIZADO ||
-                message.author === NUMERO_AUTORIZADO);
->>>>>>> 2405efc (ironpay 3)
+    //    const esMensajeDirectoAutorizado = !message.from.endsWith('@g.us') &&
+    //            (message.from === NUMERO_AUTORIZADO ||
+    //                message.author === NUMERO_AUTORIZADO);
+
 
         // // Si no es ni del grupo permitido ni un mensaje directo autorizado, ignorar
         // if (!esDelGrupoPermitido && !esMensajeDirectoAutorizado) {
