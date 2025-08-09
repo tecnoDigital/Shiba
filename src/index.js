@@ -17,7 +17,6 @@ import promClient from 'prom-client';
 import fs from 'fs';
 import readline from 'readline';
 import axios from 'axios';
-import fs from 'fs';
 import readline from 'readline';
 
 dotenv.config(); // Carga inicial de .env
