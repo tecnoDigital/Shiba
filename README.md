@@ -23,7 +23,7 @@ WEBHOOK_RETELL=https://your-retell-webhook-url
 IRON_PAY_WEBHOOK=https://your-ironpay-webhook-url
 
 # Authorized Numbers for IronPay (comma-separated, no +)
-IRON_NUMBERS=5213331843176,521xxxxxxxxxx
+IRON_NUMBERS=521333184xxxx,521xxxxxxxxxx
 
 # Metrics server
 METRICS_PORT=3001
